@@ -32,10 +32,12 @@ def postproperty(request):
     form = PropertyForm()
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
 
 
     # #
-    # #     if form.is_valid():
+    # #
     # #
     # #         return redirect('/')
     # else:
