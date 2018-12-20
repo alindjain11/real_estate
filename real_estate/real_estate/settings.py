@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'pages',
     'accounts',
     'django.contrib.humanize',
+    'crispy_forms'
 
 ]
 
@@ -134,3 +135,12 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+AUTH_USER_MODEL = 'accounts.Profile'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}

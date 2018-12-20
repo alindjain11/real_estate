@@ -1,12 +1,11 @@
 from django.db import models
-from sellers.models import Seller
-
+from accounts.models import Profile
 from datetime import datetime
 # Create your models here.
 
 
 class Property(models.Model):
-    seller = models.ForeignKey(Seller, on_delete=models.DO_NOTHING)
+    profile = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, blank=True, null=True)
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
@@ -19,13 +18,13 @@ class Property(models.Model):
     garage = models.IntegerField(default=0)
     sqft = models.IntegerField()
     lot_size = models.DecimalField(max_digits=5, decimal_places=1)
-    # photo_main = models.ImageField(upload_to='properties/%Y/%m/%d/')
-    # photo_1 = models.ImageField(upload_to='properties/%Y/%m/%d/', blank=True)
-    # photo_2 = models.ImageField(upload_to='properties/%Y/%m/%d/', blank=True)
-    # photo_3 = models.ImageField(upload_to='properties/%Y/%m/%d/', blank=True)
-    # photo_4 = models.ImageField(upload_to='properties/%Y/%m/%d/', blank=True)
-    # photo_5 = models.ImageField(upload_to='properties/%Y/%m/%d/', blank=True)
-    # photo_6 = models.ImageField(upload_to='properties/%Y/%m/%d/', blank=True)
+    photo_main = models.ImageField(upload_to='properties', blank=True, default='')
+    photo_1 = models.ImageField(upload_to='properties', blank=True)
+    photo_2 = models.ImageField(upload_to='properties', blank=True)
+    photo_3 = models.ImageField(upload_to='properties', blank=True)
+    photo_4 = models.ImageField(upload_to='properties', blank=True)
+    photo_5 = models.ImageField(upload_to='properties', blank=True)
+    photo_6 = models.ImageField(upload_to='properties', blank=True)
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=datetime.now, blank=True)
 
@@ -33,7 +32,7 @@ class Property(models.Model):
         return self.name
 
 
-class ImageModel(models.Model):
-    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='properties/%d', blank=True)
+# class ImageModel(models.Model):
+#     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='images')
+#     image = models.ImageField(upload_to='properties/%d', blank=True)
 

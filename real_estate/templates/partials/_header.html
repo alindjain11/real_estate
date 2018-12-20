@@ -24,8 +24,13 @@
 							<a href=""><i class="fa fa-linkedin"></i></a>
 						</div>
 						<div class="user-panel">
-							<a href=""><i class="fa fa-user-circle-o"></i> Register</a>
-							<a href=""><i class="fa fa-sign-in"></i> Login</a>
+							{% if user.is_authenticated %}
+							<a href="{% url 'dashboard' %}"><i class="fa fa-user-circle-o"></i> {{user}}</a>
+							<a href="{% url 'logout' %}"><i class="fa fa-si0gn-in"></i> Logout</a>
+							{% else %}
+							<a href="{% url 'register' %}"><i class="fa fa-user-circle-o"></i> Register</a>
+							<a href="{% url 'login' %}"><i class="fa fa-si0gn-in"></i> Login</a>
+							{% endif %}
 						</div>
 					</div>
 				</div>
